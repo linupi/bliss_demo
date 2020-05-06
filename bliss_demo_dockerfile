@@ -1,0 +1,5 @@
+# This Dockerfile is used to build an headles vnc image based on Ubuntu
+
+FROM aicampbell/vnc-ubuntu18-xfce
+
+MAINTAINER BCU "linus.pithan@esrf.fr"
