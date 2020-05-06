@@ -4,21 +4,14 @@ FROM danielguerra/ubuntu-xrdp
 
 MAINTAINER BCU "linus.pithan@esrf.fr"
 
-
 ENV VNC_PORT=5901 
 EXPOSE $VNC_PORT 
 
 ### Envrionment config
-ENV INST_SCRIPTS=/headless/install \
-    VNC_COL_DEPTH=24 \
+ENV VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1280x1024 \
     VNC_PW=vncpassword \
     VNC_VIEW_ONLY=false
     
-### Add all install scripts for further steps
-ADD ./src/common/install/ $INST_SCRIPTS/
-ADD ./src/ubuntu/install/ $INST_SCRIPTS/
-RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
-    
-### Install xvnc-server & noVNC - HTML5 based VNC viewer
-RUN $INST_SCRIPTS/tigervnc.sh
+### Install xvnc-server 
+RUN wget -qO- https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz | tar xz --strip 1 -C /
