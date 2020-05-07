@@ -1,4 +1,4 @@
-FROM tperalta82/ubuntu-nomachie
+FROM tperalta82/ubuntu-nomachine
 
 MAINTAINER BCU "linus.pithan@esrf.fr"
 
