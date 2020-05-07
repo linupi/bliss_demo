@@ -9,4 +9,3 @@ if [ $status -ne 0 ]; then
 fi
 
 # Start the second process
-echo "HALLLO"
