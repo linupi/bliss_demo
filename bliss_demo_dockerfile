@@ -7,11 +7,15 @@ MAINTAINER BCU "linus.pithan@esrf.fr"
 ENV VNC_PORT=5901 
 EXPOSE $VNC_PORT 
 
-### Envrionment config
-ENV VNC_COL_DEPTH=24 \
-    VNC_RESOLUTION=1280x1024 \
-    VNC_PW=vncpassword \
-    VNC_VIEW_ONLY=false
-    
+ENV PATH /opt/conda/bin:$PATH
+
+#from conda
+RUN apt-get update --fix-missing && \
+    apt-get install -y wget bzip2 ca-certificates curl git apt-utils
+ 
+RUN apt-get install -y tigervnc-standalone-server tigervnc-xorg-extension
+RUN vncpasswd −f bliss
+RUN vncserver
+
 ### Install xvnc-server 
-RUN wget -qO- https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz | tar xz --strip 1 -C /
+#RUN wget -qO- https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz | tar xz --strip 1 -C /
