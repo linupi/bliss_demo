@@ -2,6 +2,7 @@
 
 
 echo -e "\n------------------ bliss startup script  ------------------"
+x11vnc &
 cd /bliss/
-source activate demoenv
-python demo/start_demo_servers.py
+source /opt/conda/bin/activate demoenv
+python demo/start_demo_servers.py &
