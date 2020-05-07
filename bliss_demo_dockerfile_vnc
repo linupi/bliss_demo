@@ -1,0 +1,27 @@
+# This Dockerfile is used to build an headles vnc image based on Ubuntu
+
+FROM danielguerra/ubuntu-xrdp
+
+MAINTAINER BCU "linus.pithan@esrf.fr"
+
+ENV VNC_PORT=5901 
+EXPOSE $VNC_PORT 
+
+ENV PATH /opt/conda/bin:$PATH
+
+#from conda
+RUN apt-get update --fix-missing && \
+    apt-get install -y wget bzip2 ca-certificates curl git apt-utils
+ 
+RUN apt-get install -y tigervnc-standalone-server tigervnc-xorg-extension
+
+RUN git clone https://github.com/linupi/bliss_demo/
+RUN find bliss_demo -name '*.sh' -exec chmod a+x {} +
+
+ENV HOME=/home/ubuntu
+
+RUN bliss_demo/install_script.sh
+
+#COPY bliss_demo bliss_demo
+
+CMD bliss_demo/startup_script.sh

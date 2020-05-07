@@ -1,27 +1,29 @@
-# This Dockerfile is used to build an headles vnc image based on Ubuntu
-
-FROM danielguerra/ubuntu-xrdp
+FROM tperalta82/ubuntu-nomachie
 
 MAINTAINER BCU "linus.pithan@esrf.fr"
 
-ENV VNC_PORT=5901 
-EXPOSE $VNC_PORT 
-
 ENV PATH /opt/conda/bin:$PATH
 
-#from conda
 RUN apt-get update --fix-missing && \
-    apt-get install -y wget bzip2 ca-certificates curl git apt-utils
- 
-RUN apt-get install -y tigervnc-standalone-server tigervnc-xorg-extension
+    apt-get install -y wget bzip2 ca-certificates curl git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh && \
+    /opt/conda/bin/conda clean -tipsy && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
 
 RUN git clone https://github.com/linupi/bliss_demo/
 RUN find bliss_demo -name '*.sh' -exec chmod a+x {} +
 
-ENV HOME=/home/ubuntu
+RUN git https://gitlab.esrf.fr/bliss/bliss
 
-RUN bliss_demo/install_script.sh
+RUN bliss_demo/bliss/install_script.sh
 
 #COPY bliss_demo bliss_demo
 
-CMD bliss_demo/startup_script.sh
+CMD bliss_demo/bliss/startup_script.sh
