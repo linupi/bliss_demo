@@ -2,7 +2,8 @@
 
 echo -e "\n------------------ bliss startup script -v3----------------"
 echo -e "\n------------------ start x1vnc----------------"
-x11vnc -create -xkb -noxrecord -noxfixes -noxdamage -display :0 -auth /var/run/lightdm/root/:0 -rfbauth /etc/x11vnc.pass -rfbport 5900&
+x11vnc -create -xkb -noxrecord -noxfixes -noxdamage -auth guess -rfbauth /etc/x11vnc.pass -rfbport 5900&
+#-findauth 
 echo -e "\n------------------ start nx----------------"
 /nxserver.sh &
 echo -e "\n------------------ start nx----------------"
