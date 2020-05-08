@@ -31,6 +31,6 @@ RUN bliss_demo/bliss/install_script.sh
 
 #COPY bliss_demo bliss_demo
 
-ENTRYPOINT ["bootstrap_script.sh"]
+ENTRYPOINT ["/bliss_demo/bootstrap_script.sh"]
 
 #ENTRYPOINT ["/nxserver.sh"]
