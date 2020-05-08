@@ -2,7 +2,7 @@
 
 echo -e "\n------------------ bliss startup script -v3----------------"
 echo -e "\n------------------ start x1vnc----------------"
-x11vnc &
+x11vnc -create&
 echo -e "\n------------------ start nx----------------"
 /nxserver.sh &
 echo -e "\n------------------ start nx----------------"
