@@ -27,4 +27,6 @@ RUN bliss_demo/bliss/install_script.sh
 
 #COPY bliss_demo bliss_demo
 
-CMD bliss_demo/bliss/startup_script.sh
+ENTRYPOINT ["bliss_demo/bliss/startup_script.sh"]
+
+#ENTRYPOINT ["/nxserver.sh"]
