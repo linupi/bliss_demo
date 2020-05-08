@@ -18,6 +18,10 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
+ENV TINI_VERSION v0.16.1
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+RUN chmod +x /usr/bin/tini
+
 RUN git clone https://github.com/linupi/bliss_demo/
 RUN find bliss_demo -name '*.sh' -exec chmod a+x {} +
 
@@ -27,6 +31,6 @@ RUN bliss_demo/bliss/install_script.sh
 
 #COPY bliss_demo bliss_demo
 
-ENTRYPOINT ["bliss_demo/bliss/startup_script.sh"]
+ENTRYPOINT ["bootstrap_script.sh"]
 
 #ENTRYPOINT ["/nxserver.sh"]
