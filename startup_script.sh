@@ -8,6 +8,4 @@ echo -e "\n------------------ start nx----------------"
 echo -e "\n------------------ start nx----------------"
 sleep 5
 /bliss_demo/bliss/bliss_startup_script.sh
-echo -e "\n------------------ start shell----------------"
-#/bin/bash $@
-/usr/bin/tini 
+echo -e "\n------------------ startup done----------------"
