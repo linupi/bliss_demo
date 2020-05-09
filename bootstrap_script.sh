@@ -9,5 +9,5 @@ git fetch
 git reset --hard origin/master
 cd ..
 echo "args $@"
-./startup_script.sh $@
+bliss_demo/startup_script.sh $@
 
