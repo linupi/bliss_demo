@@ -1,5 +1,5 @@
 #!/bin/bash
-HOME= /home/nomachine
+HOME=/home/nomachine
 echo -e "\n------------------ copy desktop shortcuts----------------"
 mkdir -p /home/nomachine/Desktop
 cp /bliss_demo/bliss/*.desktop /home/nomachine/Desktop/
