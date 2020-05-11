@@ -10,5 +10,5 @@ echo -e "\n------------------ start nx----------------"
 /nxserver.sh &
 echo -e "\n------------------ start nx----------------"
 sleep 5
-/bliss_demo/bliss/bliss_startup_script.sh
+sudo -u nomachine -E env "PATH=$PATH" /bliss_demo/bliss/bliss_startup_script.sh
 echo -e "\n------------------ startup done----------------"
